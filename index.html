@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Northlight — Product analytics for SaaS teams</title>
+  <meta name="description" content="Northlight turns raw product events into clear answers. Funnels, retention and revenue analytics built for fast-moving SaaS teams.">
+  <meta name="theme-color" content="#FAFAF9">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Northlight — Product analytics for SaaS teams">
+  <meta property="og:description" content="Funnels, retention and revenue analytics built for fast-moving SaaS teams. Join the waitlist.">
+  <meta property="og:image" content="screenshots/desktop.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav__inner">
+    <a class="nav__brand" href="#top" aria-label="Northlight home">
+      <svg class="nav__mark" width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <rect x="1" y="1" width="20" height="20" rx="6" fill="#4F46E5"/>
+        <path d="M6.5 15.5V6.5l9 9V6.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>Northlight</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#demo">Demo</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn--primary btn--sm nav__cta" href="#waitlist">Join waitlist</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow reveal">Private beta · Spring 2026</p>
+      <h1 class="hero__title reveal">
+        Know exactly why<br>
+        your product <span class="hero__swap" data-words='["grows","churns","converts","retains"]'>grows</span>
+      </h1>
+      <p class="hero__sub reveal">
+        Northlight turns raw product events into clear answers — funnels, retention
+        and revenue in one workspace, without writing SQL or waiting on the data team.
+      </p>
+      <form class="waitlist reveal" id="waitlist" novalidate>
+        <label class="sr-only" for="waitlistEmail">Work email</label>
+        <input type="email" id="waitlistEmail" name="email" placeholder="you@company.com" autocomplete="email">
+        <button type="submit" class="btn btn--primary">Request access</button>
+        <p class="waitlist__msg" id="waitlistMsg" role="status" aria-live="polite"></p>
+      </form>
+      <p class="hero__note reveal">Free during beta · No credit card · SOC 2 in progress</p>
+
+      <div class="hero__mock reveal" aria-hidden="true">
+        <div class="mock">
+          <div class="mock__bar">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+            <span class="mock__url">app.northlight.io/overview</span>
+          </div>
+          <div class="mock__body">
+            <div class="mock__side">
+              <span class="mock__item is-active">Overview</span>
+              <span class="mock__item">Funnels</span>
+              <span class="mock__item">Retention</span>
+              <span class="mock__item">Revenue</span>
+              <span class="mock__item">Cohorts</span>
+            </div>
+            <div class="mock__main">
+              <div class="mock__kpi">
+                <div><small>Weekly active</small><strong data-count="12840">0</strong></div>
+                <div><small>Conversion</small><strong data-count="38" data-suffix="%">0</strong></div>
+                <div><small>MRR</small><strong data-count="92" data-prefix="$" data-suffix="k">0</strong></div>
+              </div>
+              <div class="mock__chart">
+                <span style="--h:34%"></span><span style="--h:52%"></span><span style="--h:41%"></span>
+                <span style="--h:63%"></span><span style="--h:58%"></span><span style="--h:74%"></span>
+                <span style="--h:69%"></span><span style="--h:86%"></span><span style="--h:78%"></span>
+                <span style="--h:94%"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="logos">
+    <div class="container">
+      <p class="logos__label reveal">Trusted by product teams at</p>
+      <ul class="logos__row reveal">
+        <li>Fernwave</li>
+        <li>Quantiq</li>
+        <li>Mossbit</li>
+        <li>Halvora</li>
+        <li>Driftline</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="features section" id="features">
+    <div class="container">
+      <p class="section__eyebrow reveal">Features</p>
+      <h2 class="section__title reveal">Everything you need to read your product</h2>
+      <div class="bento">
+        <article class="card card--wide reveal">
+          <h3>Funnels that explain themselves</h3>
+          <p>Drag any two events into a funnel and see where users drop, segmented by plan, platform or campaign.</p>
+          <div class="card__bars" aria-hidden="true">
+            <span style="--h:92%"></span><span style="--h:64%"></span><span style="--h:48%"></span>
+            <span style="--h:37%"></span><span style="--h:31%"></span>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>Live event stream</h3>
+          <p>Events land in under two seconds.</p>
+          <p class="card__counter"><strong data-count="1842">0</strong> events / min</p>
+        </article>
+        <article class="card reveal">
+          <h3>One-line SDK</h3>
+          <p>Track your first event in minutes.</p>
+          <pre class="card__code"><code>northlight.track(
+  "trial_started",
+  { plan: "pro" }
+)</code></pre>
+        </article>
+        <article class="card card--tall reveal">
+          <h3>Retention without the spreadsheet</h3>
+          <p>Cohort grids update themselves as new weeks close, so you always know if a release helped or hurt.</p>
+          <div class="card__grid" aria-hidden="true">
+            <i style="--o:.9"></i><i style="--o:.7"></i><i style="--o:.55"></i><i style="--o:.4"></i>
+            <i style="--o:.75"></i><i style="--o:.6"></i><i style="--o:.45"></i><i style="--o:.3"></i>
+            <i style="--o:.6"></i><i style="--o:.5"></i><i style="--o:.35"></i><i style="--o:.25"></i>
+          </div>
+        </article>
+        <article class="card reveal">
+          <h3>Revenue joined to usage</h3>
+          <p>MRR, expansion and churn mapped to the exact features that drive them.</p>
+        </article>
+        <article class="card reveal">
+          <h3>Alerts that matter</h3>
+          <p>Get pinged in Slack when a metric crosses the line you set — not when nothing changed.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo section" id="demo">
+    <div class="container demo__inner">
+      <div class="demo__copy">
+        <p class="section__eyebrow reveal">Product tour</p>
+        <h2 class="section__title reveal">Three views, one source of truth</h2>
+        <p class="demo__lead reveal">Switch between the reports teams open every morning. Same data, same definitions, zero reconciliation.</p>
+        <div class="tabs reveal" role="tablist" aria-label="Report views">
+          <button class="tab is-active" role="tab" aria-selected="true" aria-controls="demoPanel" data-tab="funnels">Funnels</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="demoPanel" data-tab="retention">Retention</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="demoPanel" data-tab="revenue">Revenue</button>
+        </div>
+      </div>
+      <div class="demo__panel reveal" id="demoPanel" role="tabpanel" aria-live="polite">
+        <div class="demo__head">
+          <span id="demoTitle">Signup → Activated funnel</span>
+          <span class="demo__delta" id="demoDelta">+12.4% vs last month</span>
+        </div>
+        <div class="demo__chart" id="demoChart" aria-hidden="true"></div>
+        <p class="demo__caption" id="demoCaption">Visitors who complete onboarding convert to paid at 3.1x the rate.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing section" id="pricing">
+    <div class="container">
+      <p class="section__eyebrow reveal">Pricing</p>
+      <h2 class="section__title reveal">Simple plans, serious analytics</h2>
+      <div class="billing reveal">
+        <span class="billing__label is-active" data-label="monthly">Monthly</span>
+        <button class="billing__toggle" id="billingToggle" role="switch" aria-checked="false" aria-label="Toggle yearly billing">
+          <span class="billing__knob"></span>
+        </button>
+        <span class="billing__label" data-label="yearly">Yearly <em>save 20%</em></span>
+      </div>
+      <div class="plans">
+        <article class="plan reveal">
+          <h3>Starter</h3>
+          <p class="plan__desc">For side projects finding their first users.</p>
+          <p class="plan__price"><span class="plan__amount" data-monthly="29" data-yearly="23">$29</span><span class="plan__per">/mo</span></p>
+          <ul class="plan__list">
+            <li>Up to 50k events / month</li>
+            <li>Funnels and retention reports</li>
+            <li>2 team seats</li>
+            <li>30-day data history</li>
+          </ul>
+          <a class="btn btn--ghost" href="#waitlist">Start free</a>
+        </article>
+        <article class="plan plan--featured reveal">
+          <p class="plan__badge">Most popular</p>
+          <h3>Growth</h3>
+          <p class="plan__desc">For teams shipping weekly and watching every release.</p>
+          <p class="plan__price"><span class="plan__amount" data-monthly="79" data-yearly="63">$79</span><span class="plan__per">/mo</span></p>
+          <ul class="plan__list">
+            <li>Up to 1M events / month</li>
+            <li>Revenue and cohort reports</li>
+            <li>10 team seats</li>
+            <li>Slack alerts and API access</li>
+            <li>12-month data history</li>
+          </ul>
+          <a class="btn btn--primary" href="#waitlist">Request access</a>
+        </article>
+        <article class="plan reveal">
+          <h3>Scale</h3>
+          <p class="plan__desc">For products where analytics is mission control.</p>
+          <p class="plan__price"><span class="plan__amount" data-monthly="199" data-yearly="159">$199</span><span class="plan__per">/mo</span></p>
+          <ul class="plan__list">
+            <li>Unlimited events</li>
+            <li>SSO and audit log</li>
+            <li>Unlimited seats</li>
+            <li>Dedicated success engineer</li>
+          </ul>
+          <a class="btn btn--ghost" href="#waitlist">Talk to us</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+  <section class="quote section">
+    <div class="container quote__inner reveal">
+      <blockquote>
+        <p>&ldquo;We replaced three tools with Northlight in a week. Our PM now answers her own questions before standup &mdash; that alone paid for it.&rdquo;</p>
+        <footer>
+          <span class="quote__avatar" aria-hidden="true">MK</span>
+          <span><strong>Maya Kessler</strong><br>Head of Product, Halvora</span>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="faq section" id="faq">
+    <div class="container faq__inner">
+      <div>
+        <p class="section__eyebrow reveal">FAQ</p>
+        <h2 class="section__title reveal">Questions, answered</h2>
+      </div>
+      <div class="accordion">
+        <details class="acc reveal">
+          <summary>How is Northlight different from Google Analytics?</summary>
+          <p>Google Analytics measures traffic. Northlight measures product behaviour — events, funnels and cohorts tied to accounts and revenue, so the numbers match your billing.</p>
+        </details>
+        <details class="acc reveal">
+          <summary>How long does setup take?</summary>
+          <p>Most teams are live in under an hour: drop in the SDK snippet, define your first two events, and historical backfill starts immediately.</p>
+        </details>
+        <details class="acc reveal">
+          <summary>Can I import data from another tool?</summary>
+          <p>Yes. We import event history from Mixpanel, Amplitude and Segment during onboarding, so your reports are useful on day one.</p>
+        </details>
+        <details class="acc reveal">
+          <summary>Where is my data stored?</summary>
+          <p>In the EU (Frankfurt) or US (Virginia) region of your choice, encrypted at rest. We never sell or share event data, and you can export or delete everything at any time.</p>
+        </details>
+        <details class="acc reveal">
+          <summary>What happens after the beta?</summary>
+          <p>Beta workspaces keep 12 months of free usage. When we launch, you pick a plan or export your data — no lock-in either way.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta section" id="waitlist-cta">
+    <div class="container">
+      <div class="cta__box reveal">
+        <h2>Start reading your product today</h2>
+        <p>Join 400+ teams on the Northlight waitlist.</p>
+        <a class="btn btn--light" href="#waitlist">Request access</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="nav__mark nav__mark--footer" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 22 22" fill="none"><rect x="1" y="1" width="20" height="20" rx="6" fill="#4F46E5"/><path d="M6.5 15.5V6.5l9 9V6.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <span>Northlight</span>
+      <p>Product analytics for SaaS teams that ship.</p>
+    </div>
+    <nav class="footer__cols" aria-label="Footer">
+      <div>
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#waitlist">Contact</a>
+      </div>
+    </nav>
+    <p class="footer__legal">&copy; 2026 Northlight Analytics, Inc. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
