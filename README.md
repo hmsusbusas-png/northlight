@@ -5,7 +5,7 @@ Marketing landing page for **Northlight**, a fictional product analytics platfor
 ## Quick start
 
 ```bash
-git clone https://github.com/zaxdev/northlight.git
+git clone https://github.com/hmsusbusas-png/northlight.git
 cd northlight
 # open index.html in a browser, or serve it:
 npx serve .

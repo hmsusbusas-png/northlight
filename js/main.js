@@ -88,6 +88,7 @@
 
     input.addEventListener("input", function () {
       input.classList.remove("is-invalid");
+      input.removeAttribute("aria-invalid");
       msg.textContent = "";
       msg.className = "waitlist__msg";
     });
@@ -97,6 +98,7 @@
       var value = input.value.trim();
       if (!value) {
         input.classList.add("is-invalid");
+        input.setAttribute("aria-invalid", "true");
         msg.textContent = "Please enter your work email.";
         msg.className = "waitlist__msg is-error";
         input.focus();
@@ -104,6 +106,7 @@
       }
       if (!EMAIL_RE.test(value)) {
         input.classList.add("is-invalid");
+        input.setAttribute("aria-invalid", "true");
         msg.textContent = "That doesn\u2019t look like a valid email \u2014 check the format.";
         msg.className = "waitlist__msg is-error";
         input.focus();
@@ -113,6 +116,7 @@
       msg.className = "waitlist__msg is-success";
       input.value = "";
       input.classList.remove("is-invalid");
+      input.removeAttribute("aria-invalid");
     });
   }
 
@@ -161,16 +165,37 @@
       });
     }
 
-    tabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        tabs.forEach(function (t) {
-          t.classList.remove("is-active");
-          t.setAttribute("aria-selected", "false");
-        });
-        tab.classList.add("is-active");
-        tab.setAttribute("aria-selected", "true");
-        render(tab.getAttribute("data-tab"));
+    // roving tabindex: активный таб в порядке табуляции, остальные — через стрелки
+    function activate(tab, moveFocus) {
+      tabs.forEach(function (t) {
+        var active = t === tab;
+        t.classList.toggle("is-active", active);
+        t.setAttribute("aria-selected", active ? "true" : "false");
+        t.setAttribute("tabindex", active ? "0" : "-1");
       });
+      if (moveFocus) tab.focus();
+      render(tab.getAttribute("data-tab"));
+    }
+
+    tabs.forEach(function (tab, idx) {
+      tab.addEventListener("click", function () {
+        activate(tab, false);
+      });
+      tab.addEventListener("keydown", function (e) {
+        var next = null;
+        if (e.key === "ArrowRight") next = tabs[(idx + 1) % tabs.length];
+        else if (e.key === "ArrowLeft") next = tabs[(idx - 1 + tabs.length) % tabs.length];
+        else if (e.key === "Home") next = tabs[0];
+        else if (e.key === "End") next = tabs[tabs.length - 1];
+        if (next) {
+          e.preventDefault();
+          activate(next, true);
+        }
+      });
+    });
+
+    tabs.forEach(function (t, i) {
+      t.setAttribute("tabindex", i === 0 ? "0" : "-1");
     });
 
     render("funnels");
