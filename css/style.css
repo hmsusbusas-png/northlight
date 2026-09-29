@@ -62,7 +62,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .btn--light { background: #fff; color: var(--ink); }
 .btn--sm { padding: 9px 16px; font-size: 14px; }
 
-/* ---------- Nav ---------- */
 .nav {
   position: sticky; top: 0; z-index: 50;
   background: rgba(250,250,249,.78);
@@ -86,7 +85,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .nav__cta { margin-left: 4px; }
 .nav__toggle { display: none; }
 
-/* ---------- Hero ---------- */
 .hero { padding: 88px 0 72px; }
 .hero__inner { text-align: center; }
 .hero__eyebrow {
@@ -138,7 +136,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .waitlist__msg.is-success { color: #15803D; }
 .hero__note { margin-top: 14px; font-size: 13px; color: #8a8a93; }
 
-/* ---------- Hero mockup ---------- */
 .hero__mock { margin-top: 56px; }
 .mock {
   max-width: 780px; margin: 0 auto;
@@ -164,7 +161,10 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .mock__item {
   font-size: 12.5px; color: var(--ink-soft);
   padding: 6px 10px; border-radius: 7px;
+  cursor: pointer; user-select: none;
+  transition: background .15s ease, color .15s ease;
 }
+.mock__item:hover { background: var(--accent-soft); color: var(--accent); }
 .mock__item.is-active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 .mock__main { padding: 18px 20px; }
 .mock__kpi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
@@ -179,13 +179,14 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   background: linear-gradient(180deg, #6366F1, var(--accent));
   border-radius: 5px 5px 2px 2px;
   transform-origin: bottom;
-  animation: growBar 1s cubic-bezier(.2,.7,.3,1) both;
+  animation: growBar 1s cubic-bezier(.2,.7,.3,1) backwards;
+  transition: transform .18s ease, filter .18s ease;
 }
 .mock__chart span:nth-child(2n) { animation-delay: .08s; }
 .mock__chart span:nth-child(3n) { animation-delay: .16s; background: linear-gradient(180deg, #A5B4FC, #818CF8); }
+.mock__chart span:hover { transform: translateY(-5px); filter: brightness(1.12); }
 @keyframes growBar { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 
-/* ---------- Logos ---------- */
 .logos { padding: 40px 0 8px; }
 .logos__label {
   text-align: center; font-size: 12.5px; color: #8a8a93;
@@ -203,7 +204,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 }
 .logos__row li:hover { color: var(--ink); }
 
-/* ---------- Bento ---------- */
 .bento {
   display: grid; gap: 16px; margin-top: 48px;
   grid-template-columns: repeat(3, 1fr);
@@ -231,9 +231,15 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   background: var(--accent-soft);
   border-top: 3px solid var(--accent);
   border-radius: 4px;
+  transform-origin: bottom;
   transition: background .2s ease;
 }
-.card:hover .card__bars span { background: #E3E7FF; }
+.card:hover .card__bars span {
+  background: #E3E7FF;
+  animation: cardBar .55s cubic-bezier(.2,.7,.3,1) both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+@keyframes cardBar { from { transform: scaleY(.12); } to { transform: scaleY(1); } }
 .card__counter { margin-top: 18px; }
 .card__counter strong {
   font-family: var(--font-display); font-size: 30px;
@@ -251,9 +257,20 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
   margin-top: 22px;
 }
-.card__grid i { aspect-ratio: 1.4; border-radius: 6px; background: var(--accent); opacity: var(--o, .4); }
+.card__grid i {
+  aspect-ratio: 1.4; border-radius: 6px;
+  background: var(--accent); opacity: var(--o, .4);
+}
+.card:hover .card__grid i {
+  animation: cellWave .8s ease both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+@keyframes cellWave {
+  0% { transform: scale(.55); opacity: calc(var(--o, .4) * .35); }
+  55% { transform: scale(1.15); opacity: 1; }
+  100% { transform: scale(1); opacity: var(--o, .4); }
+}
 
-/* ---------- Demo ---------- */
 .demo__inner {
   display: grid; grid-template-columns: 1fr 1.2fr;
   gap: 56px; align-items: center;
@@ -298,7 +315,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
 .demo__chart span:nth-child(3n) { background: linear-gradient(180deg, #A5B4FC, #818CF8); }
 .demo__caption { margin-top: 16px; font-size: 13.5px; color: var(--ink-soft); }
 
-/* ---------- Pricing ---------- */
 .pricing .section__title { max-width: none; }
 .billing {
   display: flex; align-items: center; justify-content: center; gap: 14px;
@@ -379,7 +395,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   transform: rotate(-45deg);
 }
 
-/* ---------- Quote ---------- */
 .quote__inner { max-width: 780px; margin-inline: auto; text-align: center; }
 .quote blockquote p {
   font-family: var(--font-display); font-weight: 600;
@@ -397,7 +412,6 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   font-family: var(--font-display); font-weight: 600; font-size: 15px;
 }
 
-/* ---------- FAQ ---------- */
 .faq__inner {
   display: grid; grid-template-columns: 1fr 1.5fr; gap: 56px; align-items: start;
 }
@@ -421,9 +435,9 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   transition: transform .2s ease;
 }
 .acc[open] summary::after { transform: translateY(-30%) rotate(225deg); }
+.acc__body { overflow: hidden; transition: height .3s ease; }
 .acc p { padding: 0 22px 20px; color: var(--ink-soft); font-size: 14.5px; }
 
-/* ---------- CTA + Footer ---------- */
 .cta { padding-top: 24px; }
 .cta__box {
   background: linear-gradient(135deg, #4F46E5, #6D28D9);
@@ -460,16 +474,15 @@ h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing
   border-top: 1px solid var(--line); padding-top: 24px;
 }
 
-/* ---------- Reveal ---------- */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
-  .mock__chart span, .demo__chart span { animation: none; }
+  .mock__chart span, .demo__chart span, .card__bars span, .card__grid i { animation: none; }
+  .acc__body { transition: none; }
   html { scroll-behavior: auto; }
 }
 
-/* ---------- Responsive ---------- */
 @media (max-width: 960px) {
   .bento { grid-template-columns: repeat(2, 1fr); }
   .card--wide { grid-column: span 2; }

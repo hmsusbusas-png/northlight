@@ -3,8 +3,8 @@
 
   var $ = function (sel, root) { return (root || document).querySelector(sel); };
   var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+  var reducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- Scroll reveal ---------- */
   function initReveal() {
     var items = $$(".reveal");
     if (!("IntersectionObserver" in window) || !items.length) {
@@ -22,9 +22,8 @@
     items.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Kinetic hero word ---------- */
   function initWordSwap() {
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (reducedMotion) return;
     var el = $("[data-words]");
     if (!el) return;
     var words;
@@ -41,27 +40,30 @@
     }, 2600);
   }
 
-  /* ---------- Animated counters ---------- */
-  function animateCount(el) {
+  function animateCount(el, dur) {
     var target = parseInt(el.getAttribute("data-count"), 10);
     if (isNaN(target)) return;
     var prefix = el.getAttribute("data-prefix") || "";
     var suffix = el.getAttribute("data-suffix") || "";
-    var dur = 1400, start = null;
+    var d = dur || 1400, start = null;
+    el._countId = (el._countId || 0) + 1;
+    var id = el._countId;
     function fmt(n) {
       return prefix + (n >= 1000 ? n.toLocaleString("en-US") : String(n)) + suffix;
     }
     function step(ts) {
+      if (id !== el._countId) return;
       if (!start) start = ts;
-      var p = Math.min((ts - start) / dur, 1);
+      var p = Math.min((ts - start) / d, 1);
       var eased = 1 - Math.pow(1 - p, 3);
       el.textContent = fmt(Math.round(target * eased));
       if (p < 1) requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
+
   function initCounters() {
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (reducedMotion) return;
     var counters = $$("[data-count]");
     if (!counters.length) return;
     if (!("IntersectionObserver" in window)) {
@@ -79,7 +81,50 @@
     counters.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- Waitlist form ---------- */
+  function initHeroMock() {
+    var mock = $(".mock");
+    if (!mock) return;
+    var items = $$(".mock__item", mock);
+    var chart = $(".mock__chart", mock);
+    function replayBars() {
+      if (!chart) return;
+      $$("span", chart).forEach(function (bar) {
+        bar.style.animation = "none";
+        void bar.offsetWidth;
+        bar.style.animation = "";
+      });
+    }
+    items.forEach(function (item) {
+      item.addEventListener("click", function () {
+        items.forEach(function (o) { o.classList.toggle("is-active", o === item); });
+        replayBars();
+      });
+    });
+    if (chart) {
+      $$("span", chart).forEach(function (bar) {
+        bar.addEventListener("click", replayBars);
+      });
+    }
+  }
+
+  function initBento() {
+    $$(".card__bars").forEach(function (group) {
+      $$("span", group).forEach(function (bar, i) { bar.style.setProperty("--i", i); });
+    });
+    $$(".card__grid").forEach(function (grid) {
+      $$("i", grid).forEach(function (cell, i) { cell.style.setProperty("--i", i); });
+    });
+    var counterWrap = $(".card__counter");
+    if (!counterWrap || reducedMotion) return;
+    var strong = $("strong", counterWrap);
+    var card = counterWrap.closest ? counterWrap.closest(".card") : null;
+    if (strong && card) {
+      card.addEventListener("mouseenter", function () {
+        animateCount(strong, 600);
+      });
+    }
+  }
+
   function initWaitlist() {
     var form = $("#waitlist");
     if (!form) return;
@@ -109,7 +154,7 @@
       if (!EMAIL_RE.test(value)) {
         input.classList.add("is-invalid");
         input.setAttribute("aria-invalid", "true");
-        msg.textContent = "That doesn\u2019t look like a valid email \u2014 check the format.";
+        msg.textContent = "That doesn\u2019t look like a valid email: check the format.";
         msg.className = "waitlist__msg is-error";
         input.focus();
         return;
@@ -122,7 +167,6 @@
     });
   }
 
-  /* ---------- Demo tabs ---------- */
   var DEMO_DATA = {
     funnels: {
       title: "Signup \u2192 Activated funnel",
@@ -167,7 +211,6 @@
       });
     }
 
-    // roving tabindex: активный таб в порядке табуляции, остальные — через стрелки
     function activate(tab, moveFocus) {
       tabs.forEach(function (t) {
         var active = t === tab;
@@ -203,7 +246,6 @@
     render("funnels");
   }
 
-  /* ---------- Pricing toggle ---------- */
   function initBillingToggle() {
     var toggle = $("#billingToggle");
     if (!toggle) return;
@@ -222,7 +264,6 @@
     });
   }
 
-  /* ---------- Mobile nav ---------- */
   function initMobileNav() {
     var toggle = $("#navToggle");
     var links = $(".nav__links");
@@ -248,12 +289,71 @@
     });
   }
 
-  /* ---------- FAQ: close others ---------- */
   function initAccordion() {
     var accs = $$("details.acc");
+    if (!accs.length) return;
+
+    function onDone(body, fn) {
+      var finished = false;
+      function cleanup() {
+        if (finished) return;
+        finished = true;
+        body.removeEventListener("transitionend", end);
+        fn();
+      }
+      function end(e) {
+        if (e.target === body && e.propertyName === "height") cleanup();
+      }
+      body.addEventListener("transitionend", end);
+      setTimeout(cleanup, 350);
+    }
+
+    function collapse(d) {
+      var body = $(".acc__body", d);
+      if (!body || reducedMotion) { d.open = false; return; }
+      d._accId = (d._accId || 0) + 1;
+      var myId = d._accId;
+      body.style.height = body.scrollHeight + "px";
+      requestAnimationFrame(function () {
+        body.style.height = "0px";
+      });
+      onDone(body, function () {
+        if (d._accId !== myId) return;
+        d.open = false;
+        body.style.height = "";
+      });
+    }
+
+    function expand(d) {
+      var body = $(".acc__body", d);
+      if (!body) { d.open = true; return; }
+      d._accId = (d._accId || 0) + 1;
+      var myId = d._accId;
+      d.open = true;
+      if (reducedMotion) return;
+      body.style.height = "0px";
+      requestAnimationFrame(function () {
+        body.style.height = body.scrollHeight + "px";
+      });
+      onDone(body, function () {
+        if (d._accId !== myId) return;
+        body.style.height = "";
+      });
+    }
+
     accs.forEach(function (d) {
-      d.addEventListener("toggle", function () {
-        if (d.open) accs.forEach(function (o) { if (o !== d) o.open = false; });
+      var summary = $("summary", d);
+      if (!summary) return;
+      summary.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (d.open) {
+          collapse(d);
+        } else {
+          accs.forEach(function (o) {
+            if (o !== d && o.open) collapse(o);
+          });
+          expand(d);
+        }
       });
     });
   }
@@ -262,6 +362,8 @@
     initReveal();
     initWordSwap();
     initCounters();
+    initHeroMock();
+    initBento();
     initWaitlist();
     initDemoTabs();
     initBillingToggle();
