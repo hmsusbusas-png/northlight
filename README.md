@@ -1,48 +1,53 @@
-# Northlight — Product Analytics Landing Page
+# Northlight — лендинг платформы продуктовой аналитики
 
-Marketing landing page for **Northlight**, a fictional product analytics platform for SaaS teams. Built as a portfolio piece: vanilla HTML, CSS and JavaScript — no frameworks, no build step.
+Лендинг вымышленного SaaS-сервиса Northlight: аналитика продукта для команд. Концепт для портфолио (бренд zaxdev) — чистые HTML, CSS и JavaScript, без фреймворков и сборки.
 
-## Quick start
+![Скриншот главной страницы](screenshots/desktop.png)
 
-```bash
-git clone https://github.com/hmsusbusas-png/northlight.git
+## Что внутри
+
+- липкая навигация с блюром, на мобильных превращается в бургер-меню;
+- кинетический заголовок в hero: слово в нём меняется по кругу;
+- waitlist-форма с inline-валидацией и success-состоянием;
+- мокап дашборда на чистом CSS — анимированные столбики диаграммы и живые счётчики;
+- bento-грид из 6 карточек фич: бар-чарт, счётчик событий, сниппет кода, когортная сетка;
+- демо-блок с табами Funnels / Retention / Revenue — переключение перерисовывает график;
+- тарифы с переключателем месяц/год, годовая оплата даёт минус 20%;
+- FAQ-аккордеон и scroll-reveal анимации на IntersectionObserver.
+
+## Как посмотреть
+
+Проще всего открыть `index.html` двойным кликом — сайт работает без сборки и зависимостей. Если хочется нормальный сервер:
+
+```powershell
+# PowerShell
 cd northlight
-# open index.html in a browser, or serve it:
-npx serve .
+python -m http.server 8080
+# открой http://localhost:8080
 ```
 
-## Features
+## Честно об ограничениях
 
-- Sticky blur nav with mobile menu
-- Kinetic hero headline with rotating word
-- Email waitlist form with inline validation and success state (no backend)
-- CSS product mockup with animated bar charts and live counters
-- Bento grid of 6 feature cards (bar chart, event counter, code snippet, cohort grid)
-- Interactive demo block — Funnels / Retention / Revenue tabs re-render the chart
-- Pricing with monthly/yearly toggle (−20%)
-- FAQ accordion, scroll-reveal animations via IntersectionObserver
-- Fully responsive, `prefers-reduced-motion` respected
-- SEO meta + Open Graph tags, SVG favicon
+- Форма waitlist не отправляет данные никуда: валидация и success-сообщение работают только в браузере.
+- Цифры в мокапе и метрики на карточках придуманы для макета.
+- Вся графика нарисована CSS, фотографий нет. Единственная внешняя зависимость — Google Fonts (Inter Tight + Inter), без интернета сайт откатится на системные шрифты.
 
-## Tech
+## Структура файлов
 
-- HTML5, modern CSS (grid, custom properties), ES5-compatible JavaScript
-- Only external dependency: Google Fonts (Inter Tight + Inter)
-- Zero JS errors, null-guarded DOM access
+```
+northlight/
+├── index.html        # вся разметка, одна страница
+├── css/style.css     # layout, компоненты, адаптив
+├── js/main.js        # меню, ротация слова, табы, счётчики, валидация
+├── favicon.svg
+├── screenshots/      # desktop.png, mobile.png
+└── README.md
+```
 
-## Screenshots
+## Стек
 
-- Desktop: `screenshots/desktop.png`
-- Mobile: `screenshots/mobile.png`
+HTML5, современный CSS (grid, custom properties), ES5-совместимый JavaScript; внешняя зависимость одна — Google Fonts.
 
----
+## English summary
 
-## RU / О проекте
-
-Лендинг вымышленной платформы продуктовой аналитики **Northlight** — портфолио-проект (бренд zaxdev). Чистые HTML/CSS/JS, без фреймворков и сборки.
-
-**Быстрый старт:** клонируйте репозиторий и откройте `index.html` в браузере.
-
-**Что внутри:** липкая навигация с блюром, кинетический заголовок, waitlist-форма с валидацией, CSS-мокап дашборда с анимированными графиками, bento-грид фич, демо с табами, тарифы с переключателем месяц/год, FAQ-аккордеон, scroll-reveal анимации. Адаптив от 360px, уважение `prefers-reduced-motion`, только Google Fonts как внешняя зависимость.
-
-© 2026 Northlight Analytics — fictional project for portfolio purposes.
+Marketing landing for Northlight, a fictional product analytics platform. Portfolio concept in vanilla HTML/CSS/JS, no frameworks, no build step. Kinetic hero, CSS dashboard mockup, bento grid, tabbed demo (Funnels / Retention / Revenue), pricing toggle, FAQ accordion. The waitlist form is client-side only; texts and metrics are demo content.
