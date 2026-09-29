@@ -24,6 +24,7 @@
 
   /* ---------- Kinetic hero word ---------- */
   function initWordSwap() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var el = $("[data-words]");
     if (!el) return;
     var words;
@@ -60,6 +61,7 @@
     requestAnimationFrame(step);
   }
   function initCounters() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     var counters = $$("[data-count]");
     if (!counters.length) return;
     if (!("IntersectionObserver" in window)) {
@@ -112,7 +114,7 @@
         input.focus();
         return;
       }
-      msg.textContent = "You\u2019re on the list. We\u2019ll reach out when your workspace is ready.";
+      msg.textContent = "Demo form complete. Your address was not sent anywhere.";
       msg.className = "waitlist__msg is-success";
       input.value = "";
       input.classList.remove("is-invalid");
@@ -225,15 +227,24 @@
     var toggle = $("#navToggle");
     var links = $(".nav__links");
     if (!toggle || !links) return;
-    toggle.addEventListener("click", function () {
-      var open = links.classList.toggle("is-open");
+    function setOpen(open) {
+      links.classList.toggle("is-open", open);
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+    toggle.addEventListener("click", function () {
+      setOpen(!links.classList.contains("is-open"));
     });
-    $$("a", links).forEach(function (a) {
+    $$('a', links).forEach(function (a) {
       a.addEventListener("click", function () {
-        links.classList.remove("is-open");
-        toggle.setAttribute("aria-expanded", "false");
+        setOpen(false);
       });
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && links.classList.contains("is-open")) {
+        setOpen(false);
+        toggle.focus();
+      }
     });
   }
 

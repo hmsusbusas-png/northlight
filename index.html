@@ -6,12 +6,18 @@
   <title>Northlight — Product analytics for SaaS teams</title>
   <meta name="description" content="Northlight turns raw product events into clear answers. Funnels, retention and revenue analytics built for fast-moving SaaS teams.">
   <meta name="theme-color" content="#FAFAF9">
+  <link rel="canonical" href="https://hmsusbusas-png.github.io/northlight/">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Northlight — Product analytics for SaaS teams">
   <meta property="og:description" content="Funnels, retention and revenue analytics built for fast-moving SaaS teams. Join the waitlist.">
+  <meta property="og:url" content="https://hmsusbusas-png.github.io/northlight/">
   <meta property="og:image" content="https://hmsusbusas-png.github.io/northlight/screenshots/desktop.png">
+  <meta property="og:image:alt" content="Northlight product analytics landing page concept">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Northlight | Product analytics concept">
+  <meta name="twitter:description" content="A landing page concept for a SaaS product analytics workspace.">
+  <meta name="twitter:image" content="https://hmsusbusas-png.github.io/northlight/screenshots/desktop.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700&display=swap" rel="stylesheet">
@@ -28,14 +34,14 @@
       </svg>
       <span>Northlight</span>
     </a>
-    <nav class="nav__links" aria-label="Primary">
+    <nav class="nav__links" id="navLinks" aria-label="Primary">
       <a href="#features">Features</a>
       <a href="#demo">Demo</a>
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </nav>
     <a class="btn btn--primary btn--sm nav__cta" href="#waitlist">Join waitlist</a>
-    <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+    <button class="nav__toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
       <span></span><span></span>
     </button>
   </div>
@@ -45,14 +51,14 @@
 
   <section class="hero">
     <div class="container hero__inner">
-      <p class="hero__eyebrow reveal">Private beta · Spring 2026</p>
+      <p class="hero__eyebrow reveal">Product analytics concept</p>
       <h1 class="hero__title reveal">
         Know exactly why<br>
         your product <span class="hero__swap" data-words='["grows","churns","converts","retains"]'>grows</span>
       </h1>
-      <p class="hero__sub reveal">
-        Northlight turns raw product events into clear answers — funnels, retention
-        and revenue in one workspace, without writing SQL or waiting on the data team.
+        <p class="hero__sub reveal">
+        Northlight brings product events, funnels and retention into one workspace.
+        This portfolio concept uses sample data and has no connected service behind it.
       </p>
       <form class="waitlist reveal" id="waitlist" novalidate>
         <label class="sr-only" for="waitlistEmail">Work email</label>
@@ -60,7 +66,7 @@
         <button type="submit" class="btn btn--primary">Request access</button>
         <p class="waitlist__msg" id="waitlistMsg" role="status" aria-live="polite"></p>
       </form>
-      <p class="hero__note reveal">Free during beta · No credit card · SOC 2 in progress</p>
+      <p class="hero__note reveal">Portfolio concept · Sample data and pricing · Form does not send requests</p>
 
       <div class="hero__mock reveal" aria-hidden="true">
         <div class="mock">
@@ -97,7 +103,7 @@
 
   <section class="logos">
     <div class="container">
-      <p class="logos__label reveal">Trusted by product teams at</p>
+      <p class="logos__label reveal">Sample company names for this concept</p>
       <ul class="logos__row reveal">
         <li>Fernwave</li>
         <li>Quantiq</li>
@@ -111,7 +117,7 @@
   <section class="features section" id="features">
     <div class="container">
       <p class="section__eyebrow reveal">Features</p>
-      <h2 class="section__title reveal">Everything you need to read your product</h2>
+      <h2 class="section__title reveal">A clearer view of product behaviour</h2>
       <div class="bento">
         <article class="card card--wide reveal">
           <h3>Funnels that explain themselves</h3>
@@ -149,7 +155,7 @@
         </article>
         <article class="card reveal">
           <h3>Alerts that matter</h3>
-          <p>Get pinged in Slack when a metric crosses the line you set — not when nothing changed.</p>
+          <p>Get pinged in Slack when a metric crosses the line you set, not for every small change.</p>
         </article>
       </div>
     </div>
@@ -237,8 +243,8 @@
       <blockquote>
         <p>&ldquo;We replaced three tools with Northlight in a week. Our PM now answers her own questions before standup &mdash; that alone paid for it.&rdquo;</p>
         <footer>
-          <span class="quote__avatar" aria-hidden="true">MK</span>
-          <span><strong>Maya Kessler</strong><br>Head of Product, Halvora</span>
+          <span class="quote__avatar" aria-hidden="true">EX</span>
+          <span><strong>Sample quote</strong><br>Placeholder testimonial for the portfolio concept</span>
         </footer>
       </blockquote>
     </div>
@@ -253,7 +259,7 @@
       <div class="accordion">
         <details class="acc reveal">
           <summary>How is Northlight different from Google Analytics?</summary>
-          <p>Google Analytics measures traffic. Northlight measures product behaviour — events, funnels and cohorts tied to accounts and revenue, so the numbers match your billing.</p>
+          <p>Google Analytics measures traffic. Northlight measures product behaviour: events, funnels and cohorts tied to accounts and revenue, so the numbers match your billing.</p>
         </details>
         <details class="acc reveal">
           <summary>How long does setup take?</summary>
@@ -269,7 +275,7 @@
         </details>
         <details class="acc reveal">
           <summary>What happens after the beta?</summary>
-          <p>Beta workspaces keep 12 months of free usage. When we launch, you pick a plan or export your data — no lock-in either way.</p>
+          <p>Beta workspaces keep 12 months of free usage. When we launch, you pick a plan or export your data. There is no lock-in.</p>
         </details>
       </div>
     </div>
@@ -279,7 +285,7 @@
     <div class="container">
       <div class="cta__box reveal">
         <h2>Start reading your product today</h2>
-        <p>Join 400+ teams on the Northlight waitlist.</p>
+        <p>See how a product analytics workspace could fit your team.</p>
         <a class="btn btn--light" href="#waitlist">Request access</a>
       </div>
     </div>
@@ -309,7 +315,7 @@
         <a href="#waitlist">Contact</a>
       </div>
     </nav>
-    <p class="footer__legal">&copy; 2026 Northlight Analytics, Inc. All rights reserved.</p>
+    <p class="footer__legal">Northlight is a portfolio concept. Company names, product claims, pricing and testimonial are illustrative.</p>
   </div>
 </footer>
 
